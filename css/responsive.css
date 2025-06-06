@@ -41,12 +41,15 @@
     display: block;
     font-size: 2.2rem;
     margin: 2rem 0;
-    padding: 1rem 2rem;
-    border-radius: 0.8rem;
-    background: rgba(201, 254, 0, 0.1);
+    padding: 1.5rem 2.5rem;
+    border-radius: 1rem;
+    background: rgba(201, 254, 0, 0.15);
     transition: all 0.3s ease;
     transform: translateY(20px);
     opacity: 0;
+    width: 90%;
+    text-align: center;
+    border: 0.2rem solid transparent;
   }
 
   .navbar.active a {
@@ -63,7 +66,13 @@
   .navbar a:hover {
     background: var(--main-color);
     color: var(--bg-color);
-    transform: scale(1.05);
+    transform: scale(1.05) translateY(0);
+    border-color: var(--main-color);
+    box-shadow: 0 0.5rem 2rem rgba(201, 254, 0, 0.4);
+  }
+
+  .navbar a::after {
+    display: none;
   }
 }
 
@@ -205,10 +214,19 @@
   .sidebar a {
     display: inline-block;
     margin: 0.5rem;
-    padding: 0.8rem 1.2rem;
+    padding: 1rem 1.5rem;
     font-size: 1.4rem;
-    border-radius: 0.5rem;
-    background: rgba(201, 254, 0, 0.1);
+    border-radius: 0.8rem;
+    background: rgba(201, 254, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 0.2rem solid transparent;
+  }
+
+  .sidebar a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    border-color: var(--main-color);
+    transform: scale(1.05);
   }
 
   .logout-icon {
@@ -240,6 +258,12 @@
   .nav-tabs .nav-link {
     font-size: 1.2rem;
     padding: 0.8rem 1rem;
+    transition: all 0.3s ease;
+  }
+
+  .nav-tabs .nav-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.3rem 1rem rgba(201, 254, 0, 0.3);
   }
 }
 
@@ -306,6 +330,16 @@
     padding: 1.5rem 2rem;
     font-size: 1.6rem;
   }
+
+  /* Enhanced touch targets for education cards */
+  .education-content .content {
+    padding: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .education-content .content:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
 }
 
 /* Landscape mobile improvements */
@@ -323,6 +357,54 @@
     position: relative;
     bottom: auto;
     margin-top: 2rem;
+  }
+}
+
+/* Enhanced education section responsiveness */
+@media (max-width: 768px) {
+  .education-content .content {
+    padding: 2rem 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .education-content .content:hover {
+    transform: translateY(-5px) scale(1.01);
+    box-shadow: 0 1.5rem 3rem rgba(201, 254, 0, 0.2);
+  }
+
+  .education-content .content .year {
+    font-size: 1.4rem;
+  }
+
+  .education-content .content h3 {
+    font-size: 1.8rem;
+  }
+
+  .education-content .content p {
+    font-size: 1.4rem;
+  }
+}
+
+/* Enhanced menu hover states for desktop */
+@media (min-width: 811px) {
+  .navbar a {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .navbar a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(201, 254, 0, 0.1), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .navbar a:hover::before {
+    left: 100%;
   }
 }
 
@@ -345,5 +427,46 @@
   section {
     page-break-inside: avoid;
     margin: 2rem 0;
+  }
+
+  .education-content .content,
+  .skills-content {
+    border: 0.1rem solid #000 !important;
+    background: white !important;
+  }
+}
+
+/* Enhanced accessibility for keyboard navigation */
+@media (prefers-reduced-motion: no-preference) {
+  .education-content .content:focus-within {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 2rem 4rem rgba(201, 254, 0, 0.3);
+    outline: 0.2rem solid var(--main-color);
+    outline-offset: 0.2rem;
+  }
+
+  .navbar a:focus {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 2rem rgba(201, 254, 0, 0.3);
+  }
+}
+
+/* Enhanced hover effects for better user feedback */
+@media (hover: hover) and (pointer: fine) {
+  .education-content .content {
+    cursor: pointer;
+  }
+
+  .education-content .content:hover .year i {
+    animation: pulse 1s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
   }
 }

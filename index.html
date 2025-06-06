@@ -3,286 +3,320 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <meta name="description" content="Codifica Jovens - Plataforma educacional para preparar jovens para o futuro da tecnologia" />
+    <meta name="keywords" content="educação, tecnologia, jovens, programação, robótica, realidade virtual" />
+    <meta name="author" content="Luan Henrique Garcia Todero" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Codifica Jovens - Educação Tecnológica" />
+    <meta property="og:description" content="Parceria entre Gazin e Unipar para preparar jovens para o futuro" />
+    <meta property="og:type" content="website" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- External CSS -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="./css/responsive.css" />
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="./css/style.css" as="style" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" />
+    
+    <title>Codifica Jovens - Educação Tecnológica para o Futuro</title>
   </head>
 
   <body>
-    <header class="header">
-      <a href="#" class="logo"
-        ><span style="color: #c9fe00">&lt;</span>od<span style="color: #c9fe00"
-          >:</span
-        >fica Jo<span id="barra">\<span style="color: #c9fe00">/</span></span
-        >ens <span style="color: #c9fe00"> _ </span></a
-      >
-      <div class="bx bx-menu" id="menu-icon"></div>
-      <nav class="navbar">
-        <a href="#home" class="active">Home</a>
+    <!-- Header with improved accessibility -->
+    <header class="header" role="banner">
+      <a href="#home" class="logo" aria-label="Codifica Jovens - Página inicial">
+        <span style="color: #c9fe00">&lt;</span>od<span style="color: #c9fe00">:</span>fica Jo<span id="barra">\<span style="color: #c9fe00">/</span></span>ens <span style="color: #c9fe00"> _ </span>
+      </a>
+      
+      <button class="bx bx-menu" id="menu-icon" aria-label="Abrir menu de navegação" aria-expanded="false"></button>
+      
+      <nav class="navbar" role="navigation" aria-label="Navegação principal">
+        <a href="#home" class="active" aria-current="page">Home</a>
         <a href="#about">Professores</a>
         <a href="#education">Calendário</a>
         <a href="#skills">Progresso</a>
         <a href="#contact">Contato</a>
-        <span class="active-navbar"></span>
+        <span class="active-navbar" aria-hidden="true"></span>
       </nav>
     </header>
 
-    <section class="home" id="home">
-      <div class="home-content">
-        <h1>Olá <span> TECH,</span> tudo bem?</h1>
-        <div class="text-animate">
-          <h3>Meu nome é Luan</h3>
-        </div>
-        <p>
-          Eu estou aqui para apresentar a ideia que já está em prática. Uma
-          parceria entre as empresas Gazin e Unipar, com o propósito de preparar
-          jovens para o futuro.
-        </p>
-        <div class="btn-box">
-          <a href="html/turmas.html" class="btn">turma</a>
-          <a href="html/aulas.html" class="btn">Aulas</a>
-        </div>
-      </div>
-
-      <div class="home-sci">
-        <a href="https://github.com/LuanHenriqueGarcia"
-          ><i class="bx bxl-github"></i
-        ></a>
-        <a href="https://www.instagram.com/luangarcia.bjj/"
-          ><i class="bx bxl-instagram"></i
-        ></a>
-        <a
-          href="https://www.linkedin.com/in/luan-garcia-henrique-t%C3%B3dero-213852250/"
-          ><i class="bx bxl-linkedin"></i
-        ></a>
-      </div>
-    </section>
-
-    <section class="about" id="about">
-      <h2 class="heading">
-        <span id="professor-genero" class="white">Professora</span>
-        <span id="professor-name">Eduarda</span>
-      </h2>
-      <div class="about-img">
-        <img id="content-image" src="img/image.png" />
-        <span class="circle-spin"></span>
-      </div>
-      <div class="about-content">
-        <h3>Matérias:</h3>
-        <p id="content-text">Realidade virtual, Robótica e IA</p>
-        <div class="btn-box btns">
-          <a href="#" class="btn" id="next-btn">Próximo</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="education" id="education">
-      <h2 class="heading">Próximas <span>Aulas</span></h2>
-      <div class="education-row">
-        <div class="education-column">
-          <h3 class="title">Presencial</h3>
-          <div class="education-box">
-            <div class="education-content">
-              <div class="content">
-                <div class="year">
-                  <i class="bx bxs-calendar"></i>09/11/2024
-                </div>
-                <h3>Umuarama - PR</h3>
-                <p>Lógica de programação</p>
-              </div>
-            </div>
-
-            <div class="education-content">
-              <div class="content">
-                <div class="year">
-                  <i class="bx bxs-calendar"></i>07/12/2024
-                </div>
-                <h3>Umuarama - PR</h3>
-                <p>Lógica de programação</p>
-              </div>
-            </div>
-
-            <div class="education-content">
-              <div class="content">
-                <div class="year">
-                  <i class="bx bxs-calendar"></i>08/02/2025
-                </div>
-                <h3>Umuarama - PR</h3>
-                <p>IA</p>
-              </div>
-            </div>
+    <!-- Main content -->
+    <main>
+      <!-- Hero section -->
+      <section class="home" id="home" role="main">
+        <div class="home-content">
+          <h1>Olá <span>TECH,</span> tudo bem?</h1>
+          <div class="text-animate">
+            <h3>Meu nome é Luan</h3>
+          </div>
+          <p>
+            Eu estou aqui para apresentar a ideia que já está em prática. Uma
+            parceria entre as empresas Gazin e Unipar, com o propósito de preparar
+            jovens para o futuro.
+          </p>
+          <div class="btn-box">
+            <a href="html/turmas.html" class="btn" aria-label="Acessar página da turma">Turma</a>
+            <a href="html/aulas.html" class="btn" aria-label="Acessar aulas online">Aulas</a>
           </div>
         </div>
 
-        <div class="education-column">
-          <h3 class="title">online</h3>
-          <div class="education-box">
-            <div class="education-content">
-              <div class="content">
-                <div class="year">
-                  <i class="bx bxs-calendar"></i>23/11/2024
-                </div>
-                <h3>Douradina - PR</h3>
-                <p>Lógica de programação</p>
-              </div>
-            </div>
+        <div class="home-sci" role="complementary" aria-label="Redes sociais">
+          <a href="https://github.com/LuanHenriqueGarcia" aria-label="GitHub do Luan" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-github"></i>
+          </a>
+          <a href="https://www.instagram.com/luangarcia.bjj/" aria-label="Instagram do Luan" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-instagram"></i>
+          </a>
+          <a href="https://www.linkedin.com/in/luan-garcia-henrique-t%C3%B3dero-213852250/" aria-label="LinkedIn do Luan" target="_blank" rel="noopener noreferrer">
+            <i class="bx bxl-linkedin"></i>
+          </a>
+        </div>
+      </section>
 
-            <div class="education-content">
-              <div class="content">
-                <div class="year">
-                  <i class="bx bxs-calendar"></i>22/02/2025
-                </div>
-                <h3>Douradina - PR</h3>
-                <p>Lógica de programação</p>
-              </div>
-            </div>
+      <!-- About section -->
+      <section class="about" id="about" role="region" aria-labelledby="about-heading">
+        <h2 class="heading" id="about-heading">
+          <span id="professor-genero" class="white">Professora</span>
+          <span id="professor-name">Eduarda</span>
+        </h2>
+        <div class="about-img">
+          <img id="content-image" src="img/image.png" alt="Foto da professora Eduarda" loading="lazy" />
+          <span class="circle-spin" aria-hidden="true"></span>
+        </div>
+        <div class="about-content">
+          <h3>Matérias:</h3>
+          <p id="content-text">Realidade virtual, Robótica e IA</p>
+          <div class="btn-box btns">
+            <button class="btn" id="next-btn" aria-label="Ver próximo professor">Próximo</button>
+          </div>
+        </div>
+      </section>
 
-            <div class="education-content">
-              <div class="content">
-                <div class="year">
-                  <i class="bx bxs-calendar"></i>26/10/2024
+      <!-- Education section -->
+      <section class="education" id="education" role="region" aria-labelledby="education-heading">
+        <h2 class="heading" id="education-heading">Próximas <span>Aulas</span></h2>
+        <div class="education-row">
+          <div class="education-column">
+            <h3 class="title">Presencial</h3>
+            <div class="education-box">
+              <article class="education-content">
+                <div class="content">
+                  <div class="year">
+                    <i class="bx bxs-calendar" aria-hidden="true"></i>09/11/2024
+                  </div>
+                  <h3>Umuarama - PR</h3>
+                  <p>Lógica de programação</p>
                 </div>
-                <h3>Douradina - PR</h3>
-                <p>IA</p>
-              </div>
+              </article>
+
+              <article class="education-content">
+                <div class="content">
+                  <div class="year">
+                    <i class="bx bxs-calendar" aria-hidden="true"></i>07/12/2024
+                  </div>
+                  <h3>Umuarama - PR</h3>
+                  <p>Lógica de programação</p>
+                </div>
+              </article>
+
+              <article class="education-content">
+                <div class="content">
+                  <div class="year">
+                    <i class="bx bxs-calendar" aria-hidden="true"></i>08/02/2025
+                  </div>
+                  <h3>Umuarama - PR</h3>
+                  <p>IA</p>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="education-column">
+            <h3 class="title">Online</h3>
+            <div class="education-box">
+              <article class="education-content">
+                <div class="content">
+                  <div class="year">
+                    <i class="bx bxs-calendar" aria-hidden="true"></i>23/11/2024
+                  </div>
+                  <h3>Douradina - PR</h3>
+                  <p>Lógica de programação</p>
+                </div>
+              </article>
+
+              <article class="education-content">
+                <div class="content">
+                  <div class="year">
+                    <i class="bx bxs-calendar" aria-hidden="true"></i>22/02/2025
+                  </div>
+                  <h3>Douradina - PR</h3>
+                  <p>Lógica de programação</p>
+                </div>
+              </article>
+
+              <article class="education-content">
+                <div class="content">
+                  <div class="year">
+                    <i class="bx bxs-calendar" aria-hidden="true"></i>26/10/2024
+                  </div>
+                  <h3>Douradina - PR</h3>
+                  <p>IA</p>
+                </div>
+              </article>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="skills" id="skills">
-      <h2 class="heading">Progresso<span> 2024</span></h2>
-      <div class="skills-row">
-        <div class="skills-column">
-          <h3 class="title">1º Bimestre</h3>
-
-          <div class="skills-box">
-            <div class="skills-content">
-              <div class="progress">
-                <h3>Introducão<span></span>100%</h3>
-                <div class="bar">
-                  <span>a</span>
+      <!-- Skills section -->
+      <section class="skills" id="skills" role="region" aria-labelledby="skills-heading">
+        <h2 class="heading" id="skills-heading">Progresso<span> 2024</span></h2>
+        <div class="skills-row">
+          <div class="skills-column">
+            <h3 class="title">1º Bimestre</h3>
+            <div class="skills-box">
+              <div class="skills-content">
+                <div class="progress">
+                  <h3>Introdução<span>100%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="progress">
-                <h3>Word<span>100%</span></h3>
-                <div class="bar">
-                  <span>a</span>
+                <div class="progress">
+                  <h3>Word<span>100%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="progress">
-                <h3>Execel<span>100%</span></h3>
-                <div class="bar">
-                  <span>a</span>
+                <div class="progress">
+                  <h3>Excel<span>100%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
                 </div>
-              </div>
 
-              <div class="progress">
-                <h3>Realidade Vitual <span>100%</span></h3>
-                <div class="bar">
-                  <span>a</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="skills-column">
-          <h3 class="title">2º Bimestre</h3>
-
-          <div class="skills-box">
-            <div class="skills-content">
-              <div class="progress">
-                <h3>Robótica <span>100%</span></h3>
-                <div class="bar">
-                  <span>a</span>
-                </div>
-              </div>
-
-              <div class="progress">
-                <h3>Logíca de programação <span>25%</span></h3>
-                <div class="bar">
-                  <span>a</span>
-                </div>
-              </div>
-
-              <div class="progress">
-                <h3>inteligência artificial (IA)<span>0%</span></h3>
-                <div class="bar">
-                  <span>a</span>
-                </div>
-              </div>
-
-              <div class="progress">
-                <h3>Encerramento <span>0%</span></h3>
-                <div class="bar">
-                  <span>a</span>
+                <div class="progress">
+                  <h3>Realidade Virtual <span>100%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <section class="contact" id="contact">
-      <h2 class="heading">Fale <span>Comigo</span></h2>
-      <form action="#">
-        <div class="input-box">
-          <div class="input-field">
-            <input type="text" placeholder="Nome completo" required />
-            <span class="focus"></span>
+          <div class="skills-column">
+            <h3 class="title">2º Bimestre</h3>
+            <div class="skills-box">
+              <div class="skills-content">
+                <div class="progress">
+                  <h3>Robótica <span>100%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
+                </div>
+
+                <div class="progress">
+                  <h3>Lógica de programação <span>25%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
+                </div>
+
+                <div class="progress">
+                  <h3>Inteligência artificial (IA)<span>0%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
+                </div>
+
+                <div class="progress">
+                  <h3>Encerramento <span>0%</span></h3>
+                  <div class="bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                    <span aria-hidden="true"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="input-field">
-            <input type="text" placeholder="Email" required />
-            <span class="focus"></span>
+        </div>
+      </section>
+
+      <!-- Contact section -->
+      <section class="contact" id="contact" role="region" aria-labelledby="contact-heading">
+        <h2 class="heading" id="contact-heading">Fale <span>Comigo</span></h2>
+        <form action="#" method="post" novalidate>
+          <div class="input-box">
+            <div class="input-field">
+              <input type="text" name="nome" placeholder="Nome completo" required aria-label="Nome completo" />
+              <span class="focus" aria-hidden="true"></span>
+            </div>
+            <div class="input-field">
+              <input type="email" name="email" placeholder="Email" required aria-label="Endereço de email" />
+              <span class="focus" aria-hidden="true"></span>
+            </div>
           </div>
-        </div>
 
-        <div class="input-box">
-          <div class="input-field">
-            <input type="number" placeholder="Número de telefone" required />
-            <span class="focus"></span>
+          <div class="input-box">
+            <div class="input-field">
+              <input type="tel" name="telefone" placeholder="Número de telefone" required aria-label="Número de telefone" />
+              <span class="focus" aria-hidden="true"></span>
+            </div>
+            <div class="input-field">
+              <input type="text" name="assunto" placeholder="Tema do Email" required aria-label="Assunto da mensagem" />
+              <span class="focus" aria-hidden="true"></span>
+            </div>
           </div>
-          <div class="input-field">
-            <input type="text" placeholder="tema do Email" required />
-            <span class="focus"></span>
+
+          <div class="textarea-field">
+            <textarea name="mensagem" cols="30" rows="10" placeholder="Sua Mensagem" required aria-label="Sua mensagem"></textarea>
+            <span class="focus" aria-hidden="true"></span>
           </div>
-        </div>
 
-        <div class="textarea-field">
-          <textarea
-            name=""
-            id=""
-            cols="30"
-            rows="10"
-            placeholder="Sua Mensagem"
-            riquired
-          ></textarea>
-          <span class="focus"></span>
-        </div>
+          <div class="btn-box btns">
+            <button type="submit" class="btn">Enviar</button>
+          </div>
+        </form>
+      </section>
+    </main>
 
-        <div class="btn-box btns">
-          <button type="submit" class="btn">Enviar</button>
-        </div>
-      </form>
-    </section>
-
-    <footer class="footer">
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
       <div class="footer-text">
         <p>&copy; 2024 - Luan Henrique / Renan Yukio</p>
       </div>
 
       <div class="footer-icorTop">
-        <a href="#"><i class="bx bx-up-arrow-alt"></i></a>
+        <a href="#home" aria-label="Voltar ao topo">
+          <i class="bx bx-up-arrow-alt"></i>
+        </a>
       </div>
     </footer>
-    <script src="js/script.js"></script>
+
+    <!-- Scripts -->
+    <script type="module" src="src/main.ts"></script>
+    
+    <!-- Service Worker for PWA (optional) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>

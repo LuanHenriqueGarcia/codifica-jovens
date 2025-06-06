@@ -1,0 +1,349 @@
+/* Enhanced Responsive Styles */
+
+/* Base responsive improvements */
+* {
+  box-sizing: border-box;
+}
+
+/* Container queries for modern browsers */
+@container (max-width: 768px) {
+  .skills-row,
+  .education-row {
+    flex-direction: column;
+  }
+}
+
+/* Improved mobile navigation */
+@media (max-width: 810px) {
+  .navbar {
+    position: fixed;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 100%);
+    padding: 2rem 4%;
+    background: var(--bg-color);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .navbar.active {
+    left: 0;
+  }
+
+  .navbar a {
+    display: block;
+    font-size: 2.2rem;
+    margin: 2rem 0;
+    padding: 1rem 2rem;
+    border-radius: 0.8rem;
+    background: rgba(201, 254, 0, 0.1);
+    transition: all 0.3s ease;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  .navbar.active a {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .navbar a:nth-child(1) { transition-delay: 0.1s; }
+  .navbar a:nth-child(2) { transition-delay: 0.2s; }
+  .navbar a:nth-child(3) { transition-delay: 0.3s; }
+  .navbar a:nth-child(4) { transition-delay: 0.4s; }
+  .navbar a:nth-child(5) { transition-delay: 0.5s; }
+
+  .navbar a:hover {
+    background: var(--main-color);
+    color: var(--bg-color);
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced mobile layout for home section */
+@media (max-width: 768px) {
+  .home {
+    flex-direction: column;
+    text-align: center;
+    padding: 8rem 4% 4rem;
+  }
+
+  .home-content {
+    max-width: 100%;
+    margin-bottom: 4rem;
+  }
+
+  .home-content h1 {
+    font-size: 4.5rem;
+    line-height: 1.2;
+  }
+
+  .home-content .text-animate {
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  .home-content .text-animate h3 {
+    font-size: 2.8rem;
+  }
+
+  .btn-box {
+    width: 100%;
+    max-width: 35rem;
+    margin: 0 auto;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: auto;
+  }
+
+  .btn-box .btn {
+    width: 100%;
+    height: 5rem;
+  }
+
+  .home-sci {
+    position: relative;
+    bottom: auto;
+    width: 100%;
+    max-width: 25rem;
+    margin: 0 auto;
+  }
+}
+
+/* Improved tablet layout */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .home {
+    padding: 8rem 6% 4rem;
+  }
+
+  .home-content h1 {
+    font-size: 5rem;
+  }
+
+  .skills-row,
+  .education-row {
+    gap: 3rem;
+  }
+
+  .skills-column,
+  .education-column {
+    flex: 1 1 45%;
+  }
+}
+
+/* Enhanced form responsiveness */
+@media (max-width: 768px) {
+  .contact form .input-box {
+    flex-direction: column;
+  }
+
+  .contact form .input-box .input-field {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  .contact form .textarea-field {
+    margin: 1.5rem 0 3rem;
+  }
+}
+
+/* Improved gallery responsiveness */
+@media (max-width: 768px) {
+  .image-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .myImg {
+    width: 100%;
+    max-width: 35rem;
+    height: auto;
+  }
+}
+
+/* Enhanced modal responsiveness */
+@media (max-width: 768px) {
+  .modal {
+    padding-top: 5rem;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    margin: 2rem auto;
+  }
+
+  .close {
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 3rem;
+  }
+}
+
+/* Sidebar responsiveness for aulas.html */
+@media (max-width: 768px) {
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+  }
+
+  .content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .sidebar a {
+    display: inline-block;
+    margin: 0.5rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.4rem;
+    border-radius: 0.5rem;
+    background: rgba(201, 254, 0, 0.1);
+  }
+
+  .logout-icon {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    margin: 1rem auto;
+    display: block;
+  }
+}
+
+/* Enhanced video responsiveness */
+@media (max-width: 768px) {
+  .video-item iframe {
+    height: 25rem;
+  }
+
+  .nav-tabs {
+    flex-wrap: wrap;
+  }
+
+  .nav-tabs .nav-item {
+    flex: 1 1 auto;
+    min-width: calc(50% - 0.5rem);
+    margin: 0.25rem;
+  }
+
+  .nav-tabs .nav-link {
+    font-size: 1.2rem;
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .video-item iframe {
+    height: 20rem;
+  }
+
+  .nav-tabs .nav-item {
+    min-width: 100%;
+  }
+}
+
+/* Improved progress bars responsiveness */
+@media (max-width: 768px) {
+  .skills-content .progress h3 {
+    font-size: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .skills-content .progress .bar {
+    height: 2rem;
+    margin: 0.5rem 0 1.5rem;
+  }
+}
+
+/* Enhanced footer responsiveness */
+@media (max-width: 768px) {
+  .footer {
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .footer-text p {
+    font-size: 1.4rem;
+  }
+}
+
+/* Improved animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .btn,
+  .home-sci a,
+  .myImg,
+  .navbar a {
+    min-height: 4.4rem;
+    min-width: 4.4rem;
+  }
+
+  .btn-box .btn {
+    padding: 1.5rem 2rem;
+    font-size: 1.6rem;
+  }
+}
+
+/* Landscape mobile improvements */
+@media (max-width: 768px) and (orientation: landscape) {
+  .home {
+    min-height: auto;
+    padding: 4rem 4% 2rem;
+  }
+
+  .home-content h1 {
+    font-size: 4rem;
+  }
+
+  .home-sci {
+    position: relative;
+    bottom: auto;
+    margin-top: 2rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .header,
+  .home-sci,
+  .btn-box,
+  .footer,
+  .sidebar,
+  .logout-icon {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  section {
+    page-break-inside: avoid;
+    margin: 2rem 0;
+  }
+}

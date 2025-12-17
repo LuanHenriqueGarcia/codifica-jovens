@@ -4,11 +4,136 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>Detalhes do Aluno</title>
+    <style>
+      :root {
+        --main-color: #c9fe00;
+        --bg-color: #0c131c;
+        --bg-second-color: #1a1f2e;
+        --text-color: #ededed;
+      }
+
+      body {
+        background: var(--bg-color);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+
+      .about {
+        width: 100%;
+        max-width: 600px;
+        min-height: auto;
+        padding: 0;
+      }
+
+      .teste {
+        background: linear-gradient(145deg, var(--bg-second-color), rgba(26, 31, 46, 0.9));
+        border-radius: 2.5rem;
+        padding: 4rem 3rem;
+        border: 2px solid rgba(201, 254, 0, 0.2);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .teste::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(201, 254, 0, 0.03) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .teste h1 {
+        font-size: clamp(2.5rem, 5vw, 3.5rem);
+        color: var(--main-color);
+        margin-bottom: 2rem;
+        text-shadow: 0 0 30px rgba(201, 254, 0, 0.3);
+      }
+
+      .about-img {
+        position: relative;
+        width: 180px;
+        height: 180px;
+        margin: 0 auto 2rem;
+      }
+
+      .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--main-color);
+        box-shadow: 0 0 40px rgba(201, 254, 0, 0.4);
+      }
+
+      .about-content h3 {
+        font-size: 2rem;
+        color: var(--text-color);
+        margin-bottom: 1rem;
+      }
+
+      .about-content p {
+        font-size: 1.6rem;
+        color: #aaa;
+        margin-bottom: 2.5rem;
+      }
+
+      .btn-box .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1.2rem 3rem;
+        font-size: 1.6rem;
+        background: var(--main-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        font-weight: 600;
+      }
+
+      .btn-box .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(201, 254, 0, 0.4);
+      }
+
+      @media (max-width: 480px) {
+        body {
+          padding: 1rem;
+        }
+
+        .teste {
+          padding: 3rem 1.5rem;
+          border-radius: 2rem;
+        }
+
+        .about-img {
+          width: 140px;
+          height: 140px;
+        }
+
+        .about-content h3 {
+          font-size: 1.6rem;
+        }
+
+        .about-content p {
+          font-size: 1.4rem;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="center"></div>
-
     <section class="about" id="about">
       <div class="teste">
         <h1 id="aluno-nome"></h1>
@@ -17,10 +142,13 @@
           <span class="circle-spin"></span>
         </div>
         <div class="about-content">
-          <h3 id="email">Contato:</h3>
+          <h3>Contato:</h3>
           <p id="content-text"></p>
           <div class="btn-box btns">
-            <a href="./turmas.html"><button class="btn">voltar</button></a>
+            <a href="./turmas.html" class="btn">
+              <i class='bx bx-arrow-back'></i>
+              Voltar
+            </a>
           </div>
         </div>
       </div>
@@ -28,22 +156,10 @@
 
     <script>
       const alunos = [
-        { id: 1, nome: "Eduarda", foto: "../img/image.png", email: "-" },
-        { id: 2, nome: "Cleber", foto: "../img/image1.png", email: "-" },
-        { id: 3, nome: "Luan", foto: "../img/eu.png", email: "adasdasdas" },
-        { id: 4, nome: "Renan", foto: "../img/renan.png", email: "adasdasdas" },
-        {
-          id: 5,
-          nome: "Eduarda",
-          foto: "../img/image.png",
-          email: "adasdasdas",
-        },
-        {
-          id: 6,
-          nome: "Cleber",
-          foto: "../img/image1.png",
-          email: "adasdasdas",
-        },
+        { id: 1, nome: "Eduarda Maganha", foto: "../img/image.png", email: "Professora de RV, Robótica e IA" },
+        { id: 2, nome: "Cleber de Souza", foto: "../img/image1.png", email: "Professor" },
+        { id: 3, nome: "Luan Henrique", foto: "../img/eu.png", email: "Desenvolvedor do Sistema" },
+        { id: 4, nome: "Renan Yukio", foto: "../img/renan.png", email: "Desenvolvedor do Sistema" },
       ];
 
       const params = new URLSearchParams(window.location.search);
@@ -56,8 +172,8 @@
         document.getElementById("aluno-foto").src = aluno.foto;
         document.getElementById("content-text").textContent = aluno.email;
       } else {
-        document.getElementById("aluno-nome").textContent =
-          "Aluno não encontrado";
+        document.getElementById("aluno-nome").textContent = "Aluno não encontrado";
+        document.getElementById("content-text").textContent = "Informações não disponíveis";
       }
     </script>
   </body>

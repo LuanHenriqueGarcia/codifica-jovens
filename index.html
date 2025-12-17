@@ -7,20 +7,16 @@
     <meta name="keywords" content="educação, tecnologia, jovens, programação, robótica, realidade virtual" />
     <meta name="author" content="Luan Henrique Garcia Todero" />
     
-    <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Codifica Jovens - Educação Tecnológica" />
     <meta property="og:description" content="Parceria entre Gazin e Unipar para preparar jovens para o futuro" />
     <meta property="og:type" content="website" />
     
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     
-    <!-- External CSS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/responsive.css" />
     
-    <!-- Preload critical resources -->
     <link rel="preload" href="./css/style.css" as="style" />
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style" />
     
@@ -28,7 +24,6 @@
   </head>
 
   <body>
-    <!-- Header with improved accessibility -->
     <header class="header" role="banner">
       <a href="#home" class="logo" aria-label="Codifica Jovens - Página inicial">
         <span style="color: #c9fe00">&lt;</span>od<span style="color: #c9fe00">:</span>fica Jo<span id="barra">\<span style="color: #c9fe00">/</span></span>ens <span style="color: #c9fe00"> _ </span>
@@ -46,9 +41,8 @@
       </nav>
     </header>
 
-    <!-- Main content -->
+
     <main>
-      <!-- Hero section -->
       <section class="home" id="home" role="main">
         <div class="home-content">
           <h1>Olá <span>TECH,</span> tudo bem?</h1>
@@ -79,7 +73,6 @@
         </div>
       </section>
 
-      <!-- About section -->
       <section class="about" id="about" role="region" aria-labelledby="about-heading">
         <h2 class="heading" id="about-heading">
           <span id="professor-genero" class="white">Professora</span>
@@ -98,7 +91,6 @@
         </div>
       </section>
 
-      <!-- Education section -->
       <section class="education" id="education" role="region" aria-labelledby="education-heading">
         <h2 class="heading" id="education-heading">Próximas <span>Aulas</span></h2>
         <div class="education-row">
@@ -174,7 +166,6 @@
         </div>
       </section>
 
-      <!-- Skills section -->
       <section class="skills" id="skills" role="region" aria-labelledby="skills-heading">
         <h2 class="heading" id="skills-heading">Progresso<span> 2024</span></h2>
         <div class="skills-row">
@@ -250,7 +241,6 @@
         </div>
       </section>
 
-      <!-- Contact section -->
       <section class="contact" id="contact" role="region" aria-labelledby="contact-heading">
         <h2 class="heading" id="contact-heading">Fale <span>Comigo</span></h2>
         <form action="#" method="post" novalidate>
@@ -288,7 +278,6 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="footer" role="contentinfo">
       <div class="footer-text">
         <p>&copy; 2024 - Luan Henrique / Renan Yukio</p>
@@ -301,10 +290,8 @@
       </div>
     </footer>
 
-    <!-- Scripts -->
-    <script type="module" src="src/main.ts"></script>
+    <script src="js/main.js"></script>
     
-    <!-- Service Worker for PWA (optional) -->
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {

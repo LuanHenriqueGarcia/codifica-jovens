@@ -4,214 +4,683 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/style.css" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
     <title>Turmas</title>
     <style>
-      body {
-        background: black;
+      :root {
+        --main-color: #c9fe00;
+        --bg-color: #0c131c;
+        --bg-second-color: #1a1f2e;
+        --text-color: #ededed;
       }
 
-      /* Estilo para o botão de Sair */
-      .logout-button {
-        background-color: #c9fe00;
-        color: #333;
-        border: none;
-        padding: 8px 15px;
-        border-radius: 5px;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg-color);
+        overflow-x: hidden;
+        font-family: 'Poppins', sans-serif;
+      }
+
+      /* Vanta.js Background */
+      #vanta-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+      }
+
+      /* Header fix for this page */
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 2rem 9%;
+        background: rgba(12, 19, 28, 0.95);
+        backdrop-filter: blur(10px);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 2.5rem;
+        color: var(--text-color);
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      #menu-icon {
+        font-size: 3.6rem;
+        color: var(--bg-color);
+        background: var(--main-color);
         cursor: pointer;
-        font-size: 14px;
-        transition: 0.3s;
+        display: none;
+        border-radius: 0.8rem;
+        padding: 0.3rem;
+        border: 2px solid var(--main-color);
+        transition: all 0.3s ease;
+      }
+
+      #menu-icon:hover {
+        color: var(--main-color);
+        background: transparent;
+      }
+
+      .navbar {
+        display: flex;
+        gap: 3rem;
+      }
+
+      .navbar a {
+        font-size: 1.7rem;
+        color: var(--text-color);
+        font-weight: 500;
+        padding: 0.8rem 1.5rem;
+        border-radius: 0.8rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .navbar a:hover,
+      .navbar a.active {
+        background: var(--main-color);
+        color: var(--bg-color);
+      }
+
+      /* Heading Styles */
+      .heading2 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        text-align: center;
+        margin-bottom: 4rem;
+        color: var(--text-color);
+      }
+
+      .heading2 .verde {
+        color: var(--main-color);
+        text-shadow: 0 0 20px rgba(201, 254, 0, 0.3);
+      }
+
+      /* Turmas Section com Carrossel */
+      .turmas {
+        padding: 12rem 5% 5rem;
+        min-height: 100vh;
+      }
+
+      /* Carrossel de Alunos */
+      .carousel-container {
+        position: relative;
+        max-width: 1200px;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+
+      .carousel-wrapper {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .carousel-slide {
+        min-width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem;
+      }
+
+      .aluno-card {
+        background: linear-gradient(145deg, var(--bg-second-color), rgba(26, 31, 46, 0.8));
+        border-radius: 2rem;
+        padding: 3rem 2rem;
+        border: 2px solid rgba(201, 254, 0, 0.1);
+        text-align: center;
+        transition: all 0.4s ease;
+        cursor: pointer;
+        text-decoration: none;
+        width: 280px;
+        flex-shrink: 0;
+      }
+
+      .aluno-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--main-color);
+        box-shadow: 0 20px 50px rgba(201, 254, 0, 0.2);
+      }
+
+      .aluno-card img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 4px solid var(--main-color);
+        box-shadow: 0 0 30px rgba(201, 254, 0, 0.3);
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+      }
+
+      .aluno-card:hover img {
+        transform: scale(1.1);
+        box-shadow: 0 0 40px rgba(201, 254, 0, 0.5);
+      }
+
+      .aluno-card h3 {
+        font-size: 1.8rem;
+        color: var(--text-color);
+        margin-bottom: 0.5rem;
+      }
+
+      .aluno-card span {
+        font-size: 1.4rem;
+        color: var(--main-color);
+      }
+
+      /* Carousel Navigation */
+      .carousel-nav {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-top: 3rem;
+      }
+
+      .carousel-btn {
+        background: var(--main-color);
+        color: var(--bg-color);
+        border: none;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        font-size: 2.4rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 5px 20px rgba(201, 254, 0, 0.4);
+      }
+
+      .carousel-dots {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .dot {
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: 50%;
+        background: rgba(201, 254, 0, 0.3);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .dot.active {
+        background: var(--main-color);
+        transform: scale(1.3);
+      }
+
+      /* Galeria Section */
+      .fotos-all {
+        padding: 8rem 5%;
+        background: linear-gradient(180deg, transparent, var(--bg-second-color), transparent);
+      }
+
+      /* Carrossel de Fotos */
+      .gallery-carousel {
+        position: relative;
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 2rem;
+        border: 3px solid rgba(201, 254, 0, 0.2);
+      }
+
+      .gallery-wrapper {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+
+      .gallery-slide {
+        min-width: 100%;
         position: relative;
       }
 
-      .logout-button:hover {
-        background-color: #cc0000;
+      .gallery-slide img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .gallery-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(transparent, rgba(0,0,0,0.8));
+        padding: 3rem 2rem 2rem;
+        color: var(--text-color);
+        font-size: 1.6rem;
+      }
+
+      .gallery-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(201, 254, 0, 0.9);
+        color: var(--bg-color);
+        border: none;
+        width: 5rem;
+        height: 5rem;
+        border-radius: 50%;
+        font-size: 2.4rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10;
+      }
+
+      .gallery-nav:hover {
+        background: var(--main-color);
+        transform: translateY(-50%) scale(1.1);
+      }
+
+      .gallery-prev { left: 1.5rem; }
+      .gallery-next { right: 1.5rem; }
+
+      .gallery-dots {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+      }
+
+      /* Mobile Menu */
+      @media (max-width: 810px) {
+        #menu-icon {
+          display: block;
+        }
+
+        .navbar {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: rgba(12, 19, 28, 0.95);
+          backdrop-filter: blur(20px);
+          flex-direction: column;
+          padding: 8rem 2rem 2rem;
+          gap: 1rem;
+          transition: right 0.4s ease;
+          border-left: 3px solid var(--main-color);
+          z-index: 999;
+        }
+
+        .navbar.active {
+          right: 0;
+        }
+
+        .navbar a {
+          width: 100%;
+          text-align: center;
+          padding: 1.5rem;
+          font-size: 1.8rem;
+        }
+
+        .carousel-slide {
+          flex-wrap: wrap;
+        }
+
+        .aluno-card {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .gallery-slide img {
+          height: 300px;
+        }
+
+        .gallery-nav {
+          width: 4rem;
+          height: 4rem;
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .turmas {
+          padding: 10rem 3% 3rem;
+        }
+
+        .heading2 {
+          font-size: 2.2rem;
+          margin-bottom: 2rem;
+        }
+
+        .aluno-card {
+          padding: 2rem 1.5rem;
+        }
+
+        .aluno-card img {
+          width: 120px;
+          height: 120px;
+        }
+
+        .aluno-card h3 {
+          font-size: 1.5rem;
+        }
+
+        .carousel-btn {
+          width: 4rem;
+          height: 4rem;
+          font-size: 2rem;
+        }
+
+        .gallery-slide img {
+          height: 250px;
+        }
+
+        .gallery-nav {
+          width: 3.5rem;
+          height: 3.5rem;
+          font-size: 1.6rem;
+        }
+
+        .gallery-prev { left: 0.5rem; }
+        .gallery-next { right: 0.5rem; }
+      }
+
+      /* Overlay */
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 998;
+      }
+
+      .overlay.active {
+        opacity: 1;
+        visibility: visible;
       }
     </style>
   </head>
   <body>
+    <div id="vanta-bg"></div>
+    <div class="overlay" id="overlay"></div>
+
     <header class="header">
       <a href="#" class="logo">
-        <span style="color: #c9fe00">&lt;</span>od
-        <span style="color: #c9fe00">:</span>fica Jo
-        <span id="barra">
-          \<span style="color: #c9fe00">/</span>
-        </span>
-        ens <span style="color: #c9fe00"> _ </span>
+        <span style="color: #c9fe00">&lt;</span>od<span style="color: #c9fe00">:</span>fica Jo<span id="barra">\<span style="color: #c9fe00">/</span></span>ens <span style="color: #c9fe00"> _ </span>
       </a>
-      <div class="bx bx-menu" id="menu-icon"></div>
-      <nav class="navbar">  
+      <button class="bx bx-menu" id="menu-icon" aria-label="Abrir menu"></button>
+      <nav class="navbar" id="navbar">
         <a href="#turmas" class="active">Home</a>
         <a href="#galeria">Galeria</a>
-        <a href="/index.html">voltar</a>
-        <span class="active-navbar"></span>
+        <a href="../index.html">Voltar</a>
       </nav>
     </header>
-
-    <div class="area">
-      <ul class="circles">
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-    </div>
 
     <section class="turmas" id="turmas">
       <h1 class="heading2">
         Bem-vindo a sua Turma de <span class="verde">2024</span>
       </h1>
-      <li class="lista-alunos">
-        <a href="./detalhesAlunos.html?id=1">
-          <ul class="ul-aluno">
-            <div class="foto-div">
-              <img src="../img/image.png" class="foto-alunos" />
-            </div>
-            <div class="nome-aluno">
-              <p>Eduarda Maganha de Almeida (Professora)</p>
-            </div>
-          </ul>
-        </a>
-        <a href="./detalhesAlunos.html?id=2">
-          <ul class="ul-aluno">
-            <div class="foto-div">
-              <img src="../img/image1.png" class="foto-alunos" />
-            </div>
-            <div class="nome-aluno">
-              <p>Cleber de Souza Relli (professor)</p>
-            </div>
-          </ul>
-        </a>
-        <a href="./detalhesAlunos.html?id=3">
-          <ul class="ul-aluno">
-            <div class="foto-div">
-              <img src="../img/eu.png" class="foto-alunos" />
-            </div>
-            <div class="nome-aluno">
-              <p>Luan Henrique Garcia Todero (desenvolvedor)</p>
-            </div>
-          </ul>
-        </a>
-        <a href="./detalhesAlunos.html?id=4">
-          <ul class="ul-aluno">
-            <div class="foto-div">
-              <img src="../img/renan.png" class="foto-alunos" width="10px" />
-            </div>
-            <div class="nome-aluno">
-              <p>Renan Yukio (desenvolvedor)</p>
-            </div>
-          </ul>
-        </a>
-      </li>
+
+      <div class="carousel-container">
+        <div class="carousel-wrapper" id="alunosCarousel">
+          <div class="carousel-slide">
+            <a href="./detalhesAlunos.html?id=1" class="aluno-card">
+              <img src="../img/image.png" alt="Eduarda" />
+              <h3>Eduarda Maganha</h3>
+              <span>Professora</span>
+            </a>
+            <a href="./detalhesAlunos.html?id=2" class="aluno-card">
+              <img src="../img/image1.png" alt="Cleber" />
+              <h3>Cleber de Souza</h3>
+              <span>Professor</span>
+            </a>
+          </div>
+          <div class="carousel-slide">
+            <a href="./detalhesAlunos.html?id=3" class="aluno-card">
+              <img src="../img/eu.png" alt="Luan" />
+              <h3>Luan Henrique</h3>
+              <span>Desenvolvedor</span>
+            </a>
+            <a href="./detalhesAlunos.html?id=4" class="aluno-card">
+              <img src="../img/renan.png" alt="Renan" />
+              <h3>Renan Yukio</h3>
+              <span>Desenvolvedor</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="carousel-nav">
+          <button class="carousel-btn" id="prevAluno"><i class='bx bx-chevron-left'></i></button>
+          <div class="carousel-dots" id="alunoDots"></div>
+          <button class="carousel-btn" id="nextAluno"><i class='bx bx-chevron-right'></i></button>
+        </div>
+      </div>
     </section>
 
     <section class="fotos-all" id="galeria">
       <h1 class="heading2">
         Galeria <span class="verde">2024</span>
       </h1>
-      <br />
-      <div class="image-container">
-        <img
-          class="myImg"
-          src="../img/time.png"
-          width="300"
-          height="200"
-          alt="Imagem 1"
-        />
-        <img
-          class="myImg"
-          src="../img/time2.png"
-          width="300"
-          height="200"
-          alt="Imagem 2"
-        />
-        <img
-          class="myImg"
-          src="../img/foto3.png"
-          width="300"
-          height="200"
-          alt="Imagem 3"
-        />
+
+      <div class="gallery-carousel">
+        <div class="gallery-wrapper" id="galleryCarousel">
+          <div class="gallery-slide">
+            <img src="../img/time.png" alt="Time Codifica Jovens" />
+            <div class="gallery-caption">Time Codifica Jovens</div>
+          </div>
+          <div class="gallery-slide">
+            <img src="../img/time2.png" alt="Momentos especiais" />
+            <div class="gallery-caption">Momentos especiais</div>
+          </div>
+          <div class="gallery-slide">
+            <img src="../img/foto3.png" alt="Aula prática" />
+            <div class="gallery-caption">Aula prática</div>
+          </div>
+        </div>
+        <button class="gallery-nav gallery-prev" id="prevGallery"><i class='bx bx-chevron-left'></i></button>
+        <button class="gallery-nav gallery-next" id="nextGallery"><i class='bx bx-chevron-right'></i></button>
       </div>
-      <div id="myModal" class="modal">
-        <span class="close">&times;</span>
-        <img class="modal-content" id="img01" />
-        <div id="caption"></div>
-      </div>
+      <div class="gallery-dots" id="galleryDots"></div>
     </section>
 
     <script>
-      var modal = document.getElementById("myModal");
-      var modalImg = document.getElementById("img01");
-      var captionText = document.getElementById("caption");
+      // Menu Toggle
+      const menuIcon = document.getElementById('menu-icon');
+      const navbar = document.getElementById('navbar');
+      const overlay = document.getElementById('overlay');
 
-      var images = document.getElementsByClassName("myImg");
-      for (let img of images) {
-        img.onclick = function () {
-          modal.style.display = "block";
-          modalImg.src = this.src;
-          captionText.innerHTML = this.alt;
-        };
+      function openMenu() {
+        navbar.classList.add('active');
+        overlay.classList.add('active');
+        menuIcon.classList.add('bx-x');
       }
 
-      var closeButton = document.getElementsByClassName("close")[0];
-      closeButton.onclick = function () {
-        modal.style.display = "none";
-      };
+      function closeMenu() {
+        navbar.classList.remove('active');
+        overlay.classList.remove('active');
+        menuIcon.classList.remove('bx-x');
+      }
 
-      modal.onclick = function (event) {
-        if (event.target == modal) {
-          modal.style.display = "none";
+      menuIcon.addEventListener('click', () => {
+        if (navbar.classList.contains('active')) {
+          closeMenu();
+        } else {
+          openMenu();
         }
-      };
+      });
 
-      let menuIcon = document.querySelector("#menu-icon");
-      let navbar = document.querySelector(".navbar");
+      overlay.addEventListener('click', closeMenu);
 
-      menuIcon.onclick = () => {
-        menuIcon.classList.toggle("bx-x");
-        navbar.classList.toggle("active");
-      };
+      document.querySelectorAll('.navbar a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
 
-      let sections = document.querySelectorAll("section");
-      let navLinks = document.querySelectorAll("header nav a");
+      // Carrossel de Alunos
+      const alunosCarousel = document.getElementById('alunosCarousel');
+      const alunoSlides = alunosCarousel.querySelectorAll('.carousel-slide');
+      const alunoDots = document.getElementById('alunoDots');
+      const prevAluno = document.getElementById('prevAluno');
+      const nextAluno = document.getElementById('nextAluno');
+      let currentAluno = 0;
 
-      window.onscroll = () => {
-        sections.forEach((sec) => {
-          let top = window.scrollY;
-          let offset = sec.offsetTop - 100;
-          let height = sec.offsetHeight;
-          let id = sec.getAttribute("id");
+      // Criar dots para alunos
+      alunoSlides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToAlunoSlide(i));
+        alunoDots.appendChild(dot);
+      });
 
-          if (top >= offset && top < offset + height) {
-            navLinks.forEach((link) => {
-              link.classList.remove("active");
-              document
-                .querySelector('header nav a[href*="' + id + '"]')
-                .classList.add("active");
-            });
+      function updateAlunoDots() {
+        alunoDots.querySelectorAll('.dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentAluno);
+        });
+      }
+
+      function goToAlunoSlide(index) {
+        currentAluno = index;
+        alunosCarousel.style.transform = `translateX(-${currentAluno * 100}%)`;
+        updateAlunoDots();
+      }
+
+      prevAluno.addEventListener('click', () => {
+        currentAluno = (currentAluno - 1 + alunoSlides.length) % alunoSlides.length;
+        goToAlunoSlide(currentAluno);
+      });
+
+      nextAluno.addEventListener('click', () => {
+        currentAluno = (currentAluno + 1) % alunoSlides.length;
+        goToAlunoSlide(currentAluno);
+      });
+
+      // Carrossel de Galeria
+      const galleryCarousel = document.getElementById('galleryCarousel');
+      const gallerySlides = galleryCarousel.querySelectorAll('.gallery-slide');
+      const galleryDots = document.getElementById('galleryDots');
+      const prevGallery = document.getElementById('prevGallery');
+      const nextGallery = document.getElementById('nextGallery');
+      let currentGallery = 0;
+
+      // Criar dots para galeria
+      gallerySlides.forEach((_, i) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToGallerySlide(i));
+        galleryDots.appendChild(dot);
+      });
+
+      function updateGalleryDots() {
+        galleryDots.querySelectorAll('.dot').forEach((dot, i) => {
+          dot.classList.toggle('active', i === currentGallery);
+        });
+      }
+
+      function goToGallerySlide(index) {
+        currentGallery = index;
+        galleryCarousel.style.transform = `translateX(-${currentGallery * 100}%)`;
+        updateGalleryDots();
+      }
+
+      prevGallery.addEventListener('click', () => {
+        currentGallery = (currentGallery - 1 + gallerySlides.length) % gallerySlides.length;
+        goToGallerySlide(currentGallery);
+      });
+
+      nextGallery.addEventListener('click', () => {
+        currentGallery = (currentGallery + 1) % gallerySlides.length;
+        goToGallerySlide(currentGallery);
+      });
+
+      // Auto-play galeria
+      setInterval(() => {
+        currentGallery = (currentGallery + 1) % gallerySlides.length;
+        goToGallerySlide(currentGallery);
+      }, 5000);
+
+      // Swipe support para touch
+      let touchStartX = 0;
+      let touchEndX = 0;
+
+      document.querySelector('.gallery-carousel').addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].screenX;
+      });
+
+      document.querySelector('.gallery-carousel').addEventListener('touchend', e => {
+        touchEndX = e.changedTouches[0].screenX;
+        if (touchStartX - touchEndX > 50) {
+          currentGallery = (currentGallery + 1) % gallerySlides.length;
+          goToGallerySlide(currentGallery);
+        } else if (touchEndX - touchStartX > 50) {
+          currentGallery = (currentGallery - 1 + gallerySlides.length) % gallerySlides.length;
+          goToGallerySlide(currentGallery);
+        }
+      });
+
+      // Scroll spy
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.navbar a');
+
+      window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 150;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
           }
         });
 
-        let header = document.querySelector("header");
-        header.classList.toggle("sticky", window.scrollY > 100);
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href').includes(current)) {
+            link.classList.add('active');
+          }
+        });
+      });
 
-        menuIcon.classList.remove("bx-x");
-        navbar.classList.remove("active");
-      };
-
-      document.getElementById("logout-btn").addEventListener("click", function () {
-   
-        window.location.href = "index.html";
+      // Vanta.js NET Effect
+      VANTA.NET({
+        el: "#vanta-bg",
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        scale: 1.00,
+        scaleMobile: 1.00,
+        color: 0xc9fe00,
+        backgroundColor: 0x0c131c,
+        points: 12.00,
+        maxDistance: 20.00,
+        spacing: 18.00,
+        showDots: true
       });
     </script>
   </body>
